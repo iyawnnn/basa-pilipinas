@@ -4,96 +4,156 @@ import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { TEASER_BOOKS } from "@/lib/data";
-import { ShoppingCart, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+const FEATURED_BOOKS = [
+  {
+    _id: "1",
+    title: "Crime and Punishment",
+    author: "Fyodor Dostoyevsky",
+    discountedPrice: 429,
+    originalPrice: 749,
+    coverImage: "/images/books/crime-and-punishment.webp",
+    tags: ["Premium"],
+  },
+  {
+    _id: "2",
+    title: "The Art of Spening Money",
+    author: "Morgan Housel",
+    discountedPrice: 379,
+    coverImage: "/images/books/the-art-of-spending-money.webp",
+    tags: ["Premium"],
+  },
+  {
+    _id: "3",
+    title: "The Alchemist",
+    author: "Paulo Coelho",
+    discountedPrice: 249,
+    // File: public/images/books/the-alchemist.jpg
+    coverImage: "/images/books/the-alchemist.webp",
+    tags: ["Classic"],
+  },
+  {
+    _id: "4",
+    title: "Psychology of Money",
+    author: "Morgan Housel",
+    discountedPrice: 379,
+    // File: public/images/books/psychology-of-money.jpg
+    coverImage: "/images/books/psychology-of-money.webp",
+    tags: ["Finance"],
+  },
+];
 
 export function FeaturedCollection() {
   return (
-    <section id="featured" className="w-full py-12 md:py-24 bg-white">
-      <div className="container px-4 md:px-6 mx-auto">
-        <h2 className="text-3xl font-bold tracking-tight mb-8 text-brand-blue font-heading uppercase">
-          Featured Reads
-        </h2>
+    <section
+      id="featured"
+      className="w-full py-20 bg-white border-b border-gray-100 overflow-hidden"
+    >
+      <div className="container">
+        {/* Header: Balanced Layout */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 px-4 md:px-0">
+          <div className="max-w-xl">
+            <h2 className="text-3xl md:text-5xl font-heading font-black text-brand-black tracking-tighter">
+              The Basa Selection.
+            </h2>
+            <p className="text-gray-500 mt-2 text-sm md:text-base font-medium">
+              Top-tier reads. Unbeatable prices.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {TEASER_BOOKS.map((book) => (
-            <Card key={book._id} className="group flex flex-col h-full border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300">
-              
-              {/* Card Header: Image & Badge */}
-              <CardHeader className="p-0 relative aspect-[2/3] overflow-hidden rounded-t-lg">
-                <Image
-                  src={book.coverImage}
-                  alt={book.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <Badge className="absolute top-3 right-3 bg-brand-red hover:bg-brand-red text-white font-bold text-sm px-3 py-1 shadow-md">
-                  50% OFF
-                </Badge>
-              </CardHeader>
+          {/* Desktop Link */}
+          <Link
+            href="/products"
+            className="hidden md:flex items-center text-sm font-bold text-brand-black hover:text-brand-red transition-colors"
+          >
+            View All Books <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
 
-              {/* Card Content: Details */}
-              <CardContent className="flex-1 p-5 space-y-3">
-                <div className="space-y-1">
-                  <CardTitle className="line-clamp-1 text-lg font-heading font-bold text-gray-900">
-                    {book.title}
-                  </CardTitle>
-                  <p className="text-sm text-gray-500 font-medium">{book.author}</p>
-                </div>
-                
-                <div className="flex items-baseline gap-3">
-                   <span className="text-2xl font-bold text-brand-red font-heading">
-                     ₱{book.discountedPrice}
-                   </span>
-                   <span className="text-sm text-gray-400 line-through decoration-gray-400">
-                     ₱{book.originalPrice}
-                   </span>
-                </div>
-              </CardContent>
+        {/* Product Grid / Mobile Carousel */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 -mx-4 px-6 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-x-6 md:gap-y-12 md:pb-0 md:mx-0 md:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          {FEATURED_BOOKS.map((book) => {
+            const hasDiscount =
+              book.originalPrice && book.originalPrice > book.discountedPrice;
+            const discountPercent = hasDiscount
+              ? Math.round(
+                  ((book.originalPrice! - book.discountedPrice) /
+                    book.originalPrice!) *
+                    100,
+                )
+              : 0;
 
-              {/* Card Footer: Action */}
-              <CardFooter className="p-5 pt-0">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-bold">
-                      <ShoppingCart className="mr-2 h-4 w-4" />
-                      Buy Now <ChevronDown className="ml-2 h-4 w-4" />
+            return (
+              <div
+                key={book._id}
+                className="group flex flex-col min-w-[280px] md:min-w-0 snap-center cursor-pointer"
+              >
+                {/* Image Container */}
+                <div className="relative aspect-[2/3] bg-gray-100 rounded-lg overflow-hidden mb-4 shadow-sm group-hover:shadow-md transition-all duration-500">
+                  <Image
+                    src={book.coverImage}
+                    alt={book.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+
+                  {/* Discount Badge */}
+                  {hasDiscount && (
+                    <div className="absolute top-3 left-3">
+                      <Badge className="bg-brand-red text-white font-bold rounded-md px-2.5 py-1 text-[11px] uppercase tracking-wider shadow-sm border-0">
+                        -{discountPercent}%
+                      </Badge>
+                    </div>
+                  )}
+
+                  {/* Hover Button (Desktop) */}
+                  <div className="absolute inset-0 hidden md:flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/20 to-transparent">
+                    <Button
+                      size="sm"
+                      className="bg-brand-red text-white hover:bg-red-700 hover:text-white font-bold px-6 rounded-full shadow-xl transform translate-y-2 group-hover:translate-y-0 transition-all cursor-pointer border-0"
+                    >
+                      View Item
                     </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
-                    {book.platforms.shopee && (
-                      <DropdownMenuItem asChild>
-                        <Link href={book.platforms.shopee} target="_blank" className="cursor-pointer font-medium">
-                          Shopee
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    {book.platforms.lazada && (
-                      <DropdownMenuItem asChild>
-                        <Link href={book.platforms.lazada} target="_blank" className="cursor-pointer font-medium">
-                          Lazada
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                    {book.platforms.tiktok && (
-                      <DropdownMenuItem asChild>
-                        <Link href={book.platforms.tiktok} target="_blank" className="cursor-pointer font-medium">
-                          TikTok Shop
-                        </Link>
-                      </DropdownMenuItem>
-                    )}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </CardFooter>
-            </Card>
-          ))}
+                  </div>
+                </div>
+
+                {/* Book Details */}
+                <div className="space-y-1.5 px-1">
+                  <h3 className="font-heading font-bold text-lg text-brand-black leading-tight line-clamp-1 group-hover:text-brand-red transition-colors">
+                    {book.title}
+                  </h3>
+                  <p className="text-xs text-gray-500 font-medium uppercase tracking-wide line-clamp-1">
+                    {book.author}
+                  </p>
+                </div>
+
+                {/* Pricing Logic */}
+                <div className="flex items-center gap-3 mt-3 px-1">
+                  <span className="text-xl font-black text-brand-black font-heading">
+                    ₱{book.discountedPrice}
+                  </span>
+
+                  {hasDiscount && (
+                    <span className="text-sm text-gray-400 line-through font-medium">
+                      ₱{book.originalPrice}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile View All Button */}
+        <div className="mt-8 md:hidden px-4">
+          <Button
+            asChild
+            variant="outline"
+            className="w-full rounded-full border-gray-300 text-brand-black font-bold h-12 hover:bg-gray-50"
+          >
+            <Link href="/products">View All Books</Link>
+          </Button>
         </div>
       </div>
     </section>

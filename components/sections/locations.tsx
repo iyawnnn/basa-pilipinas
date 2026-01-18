@@ -1,51 +1,99 @@
-import { MapPin } from "lucide-react";
+"use client";
+
+import { MapPin, Clock, Navigation, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function Locations() {
   return (
-    <section className="py-20 bg-brand-dark-gray text-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-            Visit Our Stores
-          </h2>
-          <p className="text-gray-400">Experience the collection in person.</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Waltermart Pampanga */}
-          <div className="bg-brand-black border border-white/10 rounded-2xl overflow-hidden hover:border-brand-blue/50 transition-colors">
-            <div className="p-8">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="bg-brand-red text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
-                <h3 className="text-xl font-bold text-brand-blue">Pampanga Branch</h3>
-              </div>
-              <p className="text-gray-300 mb-2">G/F Waltermart San Fernando</p>
-              <p className="text-gray-500 text-sm">McArthur Highway, San Fernando, Pampanga</p>
+    <section className="w-full py-20 bg-white border-b border-gray-100">
+      {/* FIXED: Removed 'px-4 md:px-6' to match other pages' padding consistency */}
+      <div className="container mx-auto">
+        {/* Layout: Text First (Mobile) -> Map Second (Mobile) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column: Information */}
+          <div className="space-y-8 md:px-0">
+            {/* Header */}
+            <div className="space-y-2">
+              <span className="text-brand-blue font-bold tracking-widest text-xs uppercase">
+                Physical Store
+              </span>
+              <h2 className="text-4xl md:text-5xl font-heading font-black text-brand-black tracking-tighter">
+                Visit our <span className="text-brand-red">Store.</span>
+              </h2>
+              <p className="text-gray-500 text-lg max-w-md leading-relaxed">
+                Experience the collection in person. Browse our shelves, check
+                book conditions, and chat with our bookworms.
+              </p>
             </div>
-            {/* Placeholder for Map - You can add the iframe here later */}
-            <div className="h-48 bg-white/5 flex items-center justify-center border-t border-white/10">
-              <div className="flex items-center gap-2 text-gray-500">
-                <MapPin className="h-5 w-5" />
-                <span>Map View</span>
+
+            {/* Details Grid */}
+            <div className="space-y-6">
+              {/* Address */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-brand-blue flex-shrink-0">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-brand-black text-lg">
+                    Waltermart Pampanga
+                  </h3>
+                  <p className="text-gray-500">
+                    G/F Waltermart, McArthur Highway
+                  </p>
+                  <p className="text-gray-500">San Fernando, Pampanga</p>
+                </div>
+              </div>
+
+              {/* Landmarks */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center text-brand-red flex-shrink-0">
+                  <Navigation className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-brand-black text-lg">
+                    How to find us
+                  </h3>
+                  <p className="text-gray-500">Located on the Ground Floor.</p>
+                  <p className="text-brand-black font-medium">
+                    Beside Goldilocks & KFC.
+                  </p>
+                </div>
+              </div>
+
+              {/* Hours */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center text-brand-black flex-shrink-0">
+                  <Clock className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-brand-black text-lg">
+                    Store Hours
+                  </h3>
+                  <p className="text-gray-500">Monday - Sunday (Daily)</p>
+                  <p className="text-brand-black font-bold">
+                    9:00 AM - 9:00 PM
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Ayala Centrio */}
-          <div className="bg-brand-black border border-white/10 rounded-2xl overflow-hidden hover:border-brand-blue/50 transition-colors">
-            <div className="p-8">
-              <div className="flex items-center gap-2 mb-4">
-                <h3 className="text-xl font-bold text-brand-blue">Cagayan de Oro</h3>
-              </div>
-              <p className="text-gray-300 mb-2">G/F Ayala Centrio Mall</p>
-              <p className="text-gray-500 text-sm">C.M. Recto Ave, Cagayan de Oro</p>
-            </div>
-            <div className="h-48 bg-white/5 flex items-center justify-center border-t border-white/10">
-              <div className="flex items-center gap-2 text-gray-500">
-                 <MapPin className="h-5 w-5" />
-                 <span>Map View</span>
-              </div>
-            </div>
+          {/* Right Column: Map Embed */}
+          <div className="h-[300px] lg:h-[500px] w-full relative rounded-3xl overflow-hidden shadow-2xl border border-gray-200 order-last lg:order-none">
+            {/* FIXED: Using a Dynamic Search Embed ('q=Waltermart+San+Fernando...') 
+                This ensures it always pinpoints the correct location. 
+            */}
+            <iframe
+              src="https://maps.google.com/maps?q=Waltermart+San+Fernando+Pampanga&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="transition-all duration-700"
+            ></iframe>
           </div>
         </div>
       </div>

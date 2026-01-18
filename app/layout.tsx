@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Geist, Geist_Mono } from "next/font/google";
-import { Header } from "@/components/layout/Header"; // UPDATED IMPORT
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer"; // Import Footer
 import "./globals.css";
 
 const outfit = Outfit({
@@ -20,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Basa Pilipinas | Authentic Books",
+  title: "Basa Pilipinas Bookstore",
   description: "Elevating Filipino minds through accessible literature.",
 };
 
@@ -31,11 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.variable} ${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-background text-foreground`}>
-        
-        <Header /> 
-        
+      <body
+        className={`${outfit.variable} ${geistSans.variable} ${geistMono.variable} antialiased font-sans bg-background text-foreground`}
+      >
+        <Header />
+
         {children}
+        
+        <Footer />
       </body>
     </html>
   );
