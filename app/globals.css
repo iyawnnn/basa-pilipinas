@@ -1,26 +1,51 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tw-animate-css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* --- BASA BRAND PALETTE (Strict Flag Colors) --- */
+  --color-brand-blue: #053a93; /* Institutional Blue */
+  --color-brand-red: #f12b21;  /* Urgency Red */
+  --color-brand-black: #050505; /* Deep rich black, not pure #000 */
+  --color-brand-dark-gray: #121212; /* For Cards */
+  --color-brand-gold: #D4AF37; /* Kept for accents */
+  --color-brand-white: #ffffff;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* --- FONTS --- */
+  --font-heading: var(--font-outfit); /* Outfit is great for this modern look */
+  --font-sans: var(--font-geist-sans);
+
+  /* --- ANIMATIONS --- */
+  --animate-fade-in: fade-in 0.5s ease-out;
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  /* DARK THEME DEFAULTS */
+  --background: #050505; 
+  --foreground: #FFFFFF;
+  
+  --card: #121212;
+  --card-foreground: #FFFFFF;
+  
+  --primary: #053a93;
+  --primary-foreground: #FFFFFF;
+  
+  --destructive: #f12b21;
+  --destructive-foreground: #FFFFFF;
+  
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #053a93;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-white; /* Headings are now white by default */
+  }
 }
