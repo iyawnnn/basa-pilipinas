@@ -1,91 +1,85 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, MapPin, Star } from "lucide-react";
+import { BookOpen, ShoppingBag, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-white text-slate-900 py-20 lg:py-32 overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
-          
-          {/* Left Column: Text Content */}
-          <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 z-10">
-            
-            {/* Trust Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 border border-slate-200">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-6 h-6 rounded-full bg-slate-300 border-2 border-white" />
-                ))}
-              </div>
-              <span className="text-xs font-bold text-slate-600 tracking-wide uppercase ml-1">Trusted by 10,000+ Readers</span>
-            </div>
+    <section className="relative w-full overflow-hidden bg-white text-brand-black">
+      
+      {/* Background Elements */}
+      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-50 blur-[100px] rounded-full opacity-70 pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-red-50 blur-[100px] rounded-full opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
 
-            {/* Headline with SEO Keywords */}
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-heading font-black tracking-tight text-slate-900 leading-[1.1]">
-              Authentic Books. <br />
-              <span className="text-blue-600">Accessible Prices.</span>
+      {/* Main Content */}
+      <div className="container py-20 lg:py-23 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left Column */}
+          <div className="flex flex-col space-y-8 text-center lg:text-left">
+            
+            {/* TAGLINE */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tighter text-brand-black leading-[1.1]">
+              Elevating Minds, <br />
+              <span className="text-brand-blue">Crafting Change.</span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed">
-              Welcome to <span className="font-bold text-slate-900">Basa Pilipinas Bookstore</span>. 
-              We are a social enterprise offering authentic, discounted books to fuel your mind while feeding the next generation of Filipino readers.
+            {/* SEO OPTIMIZED DESCRIPTION */}
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              Welcome to <span className="font-bold text-brand-black">Basa Pilipinas Bookstore</span>. 
+              We believe reading is a right, not a luxury. Our mission is to provide every Filipino with access to 
+              books that spark curiosity and unlock opportunities—regardless of budget.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <Button asChild size="lg" className="h-14 px-8 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-base shadow-xl shadow-blue-200">
-                <Link href="/products">
-                  Shop New Arrivals <ArrowRight className="ml-2 h-4 w-4" />
+            {/* Actions */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+              <Button asChild size="lg" className="h-12 px-8 rounded-full bg-brand-red hover:bg-brand-red/90 text-white font-bold text-base shadow-lg shadow-red-100 transition-transform duration-300 hover:-translate-y-1">
+                <Link href="/collections/all">
+                  <ShoppingBag className="mr-2 h-5 w-5" /> Shop Now
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-2 border-slate-200 hover:border-slate-900 hover:bg-transparent text-slate-900 font-bold text-base transition-colors">
-                <Link href="/locations">
-                  <MapPin className="mr-2 h-4 w-4" /> Visit Our Branches
+              <Button asChild variant="outline" size="lg" className="h-12 px-8 rounded-full border border-gray-300 hover:border-brand-black hover:bg-white text-brand-black font-bold text-base shadow-sm transition-transform duration-300 hover:-translate-y-1">
+                <Link href="/about">
+                  <Info className="mr-2 h-5 w-5" /> Our Mission
                 </Link>
               </Button>
-            </div>
-
-            {/* Features / SEO Trust Signals */}
-            <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 text-sm font-semibold text-slate-500">
-              <div className="flex items-center gap-2">
-                <BookOpen className="h-5 w-5 text-blue-600" />
-                <span>100% Original Copies</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Star className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                <span>Top Rated Seller</span>
-              </div>
             </div>
           </div>
 
-          {/* Right Column: Visual */}
-          <div className="flex-1 w-full relative">
-            {/* Main Image Container */}
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square rounded-[2.5rem] overflow-hidden bg-slate-100 shadow-2xl ring-1 ring-slate-900/5">
-               {/* Placeholder for Store/Book Image */}
-               <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-slate-200 flex items-center justify-center">
-                  <span className="text-slate-300 font-heading font-black text-4xl">BPB IMAGE</span>
-               </div>
-               
-               {/* Floating Card: Mission */}
-               <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-sm p-6 rounded-2xl border border-white/50 shadow-lg">
-                  <div className="flex items-start gap-4">
-                    <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
-                      <span className="text-xl">🥣</span>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-900">Read to Feed</h3>
-                      <p className="text-sm text-slate-600 mt-1">Every purchase funds our feeding programs in Central Luzon & Mindanao.</p>
-                    </div>
+          {/* Right Column: Book Visual (Unchanged) */}
+          <div className="relative w-full flex justify-center lg:justify-end mt-12 lg:mt-0">
+            <div className="relative group perspective-1000">
+              <div className="relative w-[280px] h-[420px] md:w-[340px] md:h-[500px] bg-brand-blue rounded-r-xl rounded-l-sm shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.3)] transform transition-transform duration-700 ease-out rotate-y-[-15deg] group-hover:rotate-y-0 group-hover:scale-105 border-l-4 border-l-blue-900 cursor-pointer overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-brand-blue rounded-r-xl opacity-100" />
+                <div className="absolute left-2 top-0 bottom-0 w-[2px] bg-white/10" />
+
+                <div className="absolute top-12 left-0 right-0 text-center px-4">
+                  <div className="inline-block p-4 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-4">
+                    <BookOpen className="w-8 h-8 text-[#D4AF37]" />
                   </div>
-               </div>
+
+                  <h2 className="text-6xl font-heading font-black text-white tracking-widest opacity-90 leading-none">
+                    BPB
+                  </h2>
+
+                  <div className="mt-4 border-t border-white/20 pt-4 mx-8">
+                    <p className="text-xs font-bold text-white tracking-[0.2em] uppercase">
+                      Basa Pilipinas
+                    </p>
+                    <p className="text-xl font-heading font-bold text-white uppercase tracking-wide mt-1">
+                      Bookstore
+                    </p>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-12 left-8 right-8">
+                  <div className="h-1 w-full bg-white/20 mb-2 rounded-full" />
+                  <div className="h-1 w-2/3 bg-white/20 mb-2 rounded-full" />
+                  <div className="h-1 w-1/3 bg-brand-red rounded-full" />
+                </div>
+              </div>
+              <div className="absolute -bottom-10 left-10 right-10 h-8 bg-black/20 blur-xl rounded-[50%] transform rotate-x-[60deg]" />
             </div>
-            
-            {/* Decorative Elements */}
-            <div className="absolute -top-12 -right-12 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 opacity-50" />
-            <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-yellow-50 rounded-full blur-3xl -z-10 opacity-50" />
           </div>
 
         </div>

@@ -2,20 +2,52 @@
 @import "tw-animate-css";
 
 @theme inline {
-  /* --- BASA BRAND PALETTE (Strict Flag Colors) --- */
-  --color-brand-blue: #053a93; /* Institutional Blue */
-  --color-brand-red: #f12b21;  /* Urgency Red */
-  --color-brand-black: #050505; /* Deep rich black, not pure #000 */
-  --color-brand-dark-gray: #121212; /* For Cards */
-  --color-brand-gold: #D4AF37; /* Kept for accents */
+  /* --- 1. BASA BRAND COLORS --- */
+  --color-brand-blue: #053a93;
+  --color-brand-red: #f12b21;
+  --color-brand-black: #000000;
   --color-brand-white: #ffffff;
+  --color-brand-gold: #D4AF37; /* Restored for Icons */
+  --color-brand-dark-gray: #121212;
 
-  /* --- FONTS --- */
-  --font-heading: var(--font-outfit); /* Outfit is great for this modern look */
+  /* --- 2. SYSTEM COLOR MAPPINGS (Crucial for Build Fix) --- */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* --- 3. FONTS --- */
+  --font-heading: var(--font-outfit);
   --font-sans: var(--font-geist-sans);
 
-  /* --- ANIMATIONS --- */
+  /* --- 4. ANIMATIONS --- */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
   --animate-fade-in: fade-in 0.5s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -23,29 +55,69 @@
 }
 
 :root {
-  /* DARK THEME DEFAULTS */
-  --background: #050505; 
-  --foreground: #FFFFFF;
-  
-  --card: #121212;
-  --card-foreground: #FFFFFF;
+  --radius: 0.625rem;
+  /* Light Mode Defaults */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
   
   --primary: #053a93;
-  --primary-foreground: #FFFFFF;
+  --primary-foreground: oklch(0.985 0 0);
+  
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
   
   --destructive: #f12b21;
-  --destructive-foreground: #FFFFFF;
+  --destructive-foreground: oklch(0.985 0 0); 
   
-  --border: #27272a;
-  --input: #27272a;
-  --ring: #053a93;
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.705 0.015 286.067);
+}
+
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
 }
 
 @layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold text-white; /* Headings are now white by default */
+    @apply font-heading text-brand-blue font-bold;
+  }
+}
+
+/* --- GLOBAL CONTAINER PADDING (Responsive Fix) --- */
+@layer components {
+  .container {
+    @apply mx-auto px-6 md:px-12 lg:px-24 max-w-[1600px];
   }
 }
