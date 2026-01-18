@@ -81,7 +81,7 @@ export function Footer() {
                       <MapPin className="h-4 w-4" />
                     </div>
                     <div className="pt-1">
-                      <p className="text-white font-medium">Waltermart Pampanga</p>
+                      <p className="text-white font-medium">WalterMart Pampanga</p>
                       <p className="text-xs mt-0.5">G/F Beside Goldilocks</p>
                     </div>
                   </div>
@@ -146,9 +146,7 @@ export function Footer() {
              </h4>
              <ul className="space-y-3 text-sm">
               <li><FooterLink href="/about">Our Story</FooterLink></li>
-              <li><FooterLink href="/locations">Store Locations</FooterLink></li>
-              <li><FooterLink href="/privacy">Privacy Policy</FooterLink></li>
-              <li><FooterLink href="/terms">Terms of Service</FooterLink></li>
+              <li><FooterLink href="/locations">Store Location</FooterLink></li>
             </ul>
           </div>
 

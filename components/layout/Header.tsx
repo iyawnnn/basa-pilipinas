@@ -131,7 +131,7 @@ export function Header() {
               <div key={item.name} className="relative group">
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-1 text-xs xl:text-sm font-bold uppercase tracking-widest transition-colors py-2 ${
+                  className={`flex items-center gap-1 text-xs xl:text-sm font-bold uppercase transition-colors py-2 ${
                     pathname === item.href ? "text-brand-gold" : "text-white hover:text-brand-gold"
                   }`}
                 >
