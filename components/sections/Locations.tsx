@@ -36,10 +36,10 @@ export function Locations() {
                 </div>
                 <div>
                   <h3 className="font-bold text-brand-black text-lg">
-                    Waltermart Pampanga
+                    WalterMart Pampanga
                   </h3>
                   <p className="text-gray-500">
-                    G/F Waltermart, McArthur Highway
+                    G/F WalterMart, McArthur Highway
                   </p>
                   <p className="text-gray-500">San Fernando, Pampanga</p>
                 </div>
