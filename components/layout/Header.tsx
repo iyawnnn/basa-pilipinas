@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ChevronDown, ArrowRight } from "lucide-react";
@@ -15,12 +16,14 @@ const NAV_ITEMS = [
     name: "Products",
     href: "/products",
     submenu: [
-      { name: "New Arrivals", href: "/new" },
-      { name: "Best Sellers", href: "/best-sellers" },
-      { name: "Fiction", href: "/fiction" },
-      { name: "Non-Fiction", href: "/non-fiction" },
-      { name: "Academic", href: "/academic" },
-      { name: "Children's", href: "/childrens" },
+      { name: "300 and Below", href: "/collections/under-300" },
+      { name: "Gift Bundle Collection", href: "/collections/gift-bundles" },
+      { name: "Business, Sales & Marketing", href: "/collections/business-marketing" },
+      { name: "Leadership", href: "/collections/leadership" },
+      { name: "Bundle Promo (Tipid Deals)", href: "/collections/bundle-promo" },
+      { name: "Premium Titles", href: "/collections/premium" },
+      { name: "TWSI (Title With Slight Issues)", href: "/collections/twsi" },
+      { name: "Regular Titles", href: "/collections/regular" },
     ],
   },
   { name: "Contact", href: "/contact" },
@@ -47,32 +50,78 @@ export function Header() {
     };
   }, [isMobileMenuOpen]);
 
+  // CONTENT: Updated to your specific selling points
+  const MARQUEE_CONTENT = (
+    <div className="flex items-center shrink-0">
+      <span className="mx-8 tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold opacity-90">
+        Brand New & Sealed
+      </span>
+      <span className="w-1 h-1 bg-white/40 rounded-full" />
+      <span className="mx-8 tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold opacity-90">
+        Secured Packaging
+      </span>
+      <span className="w-1 h-1 bg-white/40 rounded-full" />
+      <span className="mx-8 tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold opacity-90">
+        Free Bookmark
+      </span>
+      <span className="w-1 h-1 bg-white/40 rounded-full" />
+      <span className="mx-8 tracking-[0.2em] uppercase text-[10px] md:text-xs font-bold opacity-90">
+        Fast Delivery
+      </span>
+      <span className="w-1 h-1 bg-white/40 rounded-full" />
+    </div>
+  );
+
   return (
     <>
       {/* =========================================================
-          ANNOUNCEMENT BAR
+          ANNOUNCEMENT BAR (Premium Blue & Infinite Loop)
       ========================================================== */}
-      <div className="bg-brand-blue text-white text-[10px] md:text-xs font-bold py-2 text-center uppercase tracking-widest relative z-50">
-        <span className="opacity-90">Free Shipping on Orders Over ₱999</span>
+      <div className="bg-brand-blue text-white py-2.5 relative z-50 overflow-hidden border-b border-white/5 flex">
+        
+        {/* INFINITE LOOP: Moving -50% creates a seamless cycle because the content is duplicated */}
+        <div className="flex w-fit animate-infinite-scroll hover:pause-animation">
+          {MARQUEE_CONTENT}
+          {MARQUEE_CONTENT}
+          {MARQUEE_CONTENT}
+          {MARQUEE_CONTENT}
+        </div>
+
+        {/* Gradient Masks for Premium Depth */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-brand-blue to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-blue to-transparent z-10"></div>
       </div>
+
+      <style jsx>{`
+        @keyframes infinite-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-infinite-scroll {
+          animation: infinite-scroll 45s linear infinite;
+        }
+        .hover\:pause-animation:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
 
       {/* =========================================================
           MAIN HEADER
       ========================================================== */}
-      <header className="sticky top-0 z-40 w-full bg-brand-black/95 backdrop-blur-sm border-b border-white/10 py-4 lg:py-5 transition-all">
+      <header className="sticky top-0 z-40 w-full bg-brand-black border-b border-white/10 py-3 lg:py-4 transition-all">
         <div className="container mx-auto flex items-center justify-between">
           
-          {/* A. LOGO (Left - Flex 1 + Basis 0) */}
+          {/* A. LOGO (Left) */}
           <div className="flex-1 basis-0 flex justify-start">
             <Link href="/" className="flex items-center gap-2 z-50 group shrink-0">
-              <div className="relative flex flex-col">
-                <h1 className="text-3xl md:text-4xl font-heading font-black tracking-tighter text-white leading-none group-hover:text-gray-300 transition-colors">
-                  BASA
-                </h1>
-                <span className="text-[0.65rem] md:text-[0.75rem] font-bold tracking-[0.35em] text-brand-gold uppercase leading-none">
-                  PILIPINAS
-                </span>
-              </div>
+              <Image 
+                src="/images/logo/logo.svg" 
+                alt="Basa Pilipinas" 
+                width={120} 
+                height={120} 
+                className="h-14 md:h-20 w-auto object-contain transition-transform group-hover:scale-105"
+                priority
+              />
             </Link>
           </div>
 
@@ -92,8 +141,8 @@ export function Header() {
 
                 {/* Dropdown */}
                 {item.submenu && (
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out">
-                    <div className="bg-brand-black border border-white/10 min-w-[200px] shadow-2xl rounded-sm overflow-hidden py-2">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out">
+                    <div className="bg-brand-black border border-white/10 min-w-[240px] shadow-2xl rounded-sm overflow-hidden py-2">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem.name}
@@ -110,14 +159,14 @@ export function Header() {
             ))}
           </nav>
 
-          {/* C. SEARCH & MOBILE TRIGGER (Right - Flex 1 + Basis 0) */}
+          {/* C. SEARCH & MOBILE TRIGGER (Right) */}
           <div className="flex-1 basis-0 flex justify-end items-center gap-4">
             {/* Desktop Search */}
             <div className="hidden lg:block relative w-full lg:max-w-[180px] xl:max-w-[240px] transition-all duration-300">
               <Input
                 type="text"
                 placeholder="Search..."
-                className="w-full h-9 pl-4 pr-10 bg-transparent dark:bg-transparent border border-white/20 text-white placeholder:text-gray-500 rounded-full focus:bg-brand-black focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all duration-300 text-xs tracking-wide"
+                className="w-full h-9 pl-4 pr-10 bg-transparent dark:bg-transparent border border-white/20 text-white placeholder:text-gray-500 rounded-full focus:bg-brand-black focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all duration-300 text-xs tracking-wide font-sans"
               />
               <Search className="absolute right-3 top-2.5 h-4 w-4 text-gray-500 pointer-events-none" />
             </div>
@@ -155,13 +204,13 @@ export function Header() {
               <div className="relative">
                 <Input
                   placeholder="What are you looking for?"
-                  className="w-full h-12 pl-4 pr-12 bg-transparent dark:bg-transparent border border-white/20 text-lg text-white placeholder:text-gray-500 rounded-xl focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all"
+                  className="w-full h-12 pl-4 pr-12 bg-transparent dark:bg-transparent border border-white/20 text-lg text-white placeholder:text-gray-500 rounded-xl focus:border-white/50 focus:ring-1 focus:ring-white/50 transition-all font-sans"
                 />
                 <Search className="absolute right-4 top-3.5 h-5 w-5 text-gray-500" />
               </div>
             </div>
 
-            {/* Mobile Links - FIXED: Added mb-12 for spacing */}
+            {/* Mobile Links */}
             <nav className="flex flex-col gap-6 mb-12">
               {NAV_ITEMS.map((item) => (
                 <div key={item.name}>
@@ -217,18 +266,14 @@ export function Header() {
               ))}
             </nav>
 
-            {/* Mobile Footer: Brand Manifesto */}
+            {/* Mobile Footer: Manifesto */}
             <div className="mt-auto pt-10 border-t border-white/10">
               <h4 className="text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-4">
                 Our Promise
               </h4>
-              <p className="text-white text-2xl font-heading font-black leading-tight mb-2">
+              <p className="text-white text-3xl font-heading font-black leading-tight">
                 Elevating Minds, <br />
                 <span className="text-white/50">Crafting Change.</span>
-              </p>
-              <p className="text-white/40 text-sm mt-4">
-                © 2026 Basa Pilipinas Bookstore. <br />
-                Authentic Books. Fair Prices.
               </p>
             </div>
 
