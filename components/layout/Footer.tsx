@@ -131,11 +131,11 @@ export function Footer() {
               Genres
             </h4>
             <ul className="space-y-3 text-sm">
-              <li><FooterLink href="/collections/finance">Finance & Wealth</FooterLink></li>
-              <li><FooterLink href="/collections/self-help">Self Help & Growth</FooterLink></li>
-              <li><FooterLink href="/collections/psychology">Psychology</FooterLink></li>
-              <li><FooterLink href="/collections/romance">Romance</FooterLink></li>
-              <li><FooterLink href="/collections/classics">Literary Classics</FooterLink></li>
+              <li><FooterLink href="/collections/self-hel">Self-help</FooterLink></li>
+              <li><FooterLink href="/collections/business">Business</FooterLink></li>
+              <li><FooterLink href="/collections/meantal-health">Mental Health</FooterLink></li>
+              <li><FooterLink href="/collections/kids-books">Kids Books</FooterLink></li>
+              <li><FooterLink href="/collections/christianity-spiritual">Christianity/Spiritual</FooterLink></li>
             </ul>
           </div>
 

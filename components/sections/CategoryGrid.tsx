@@ -1,37 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Heart, Coins, Sprout, Lightbulb, Briefcase } from "lucide-react";
+// Added Brain (Mental Health), Baby (Kids), Church (Christianity)
+import { ArrowRight, Sprout, Briefcase, Brain, Baby, Church } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const CATEGORIES = [
   {
-    id: "romance",
-    title: "Romance",
-    description: "Swoon-worthy stories",
-    icon: Heart,
-    href: "/collections/romance",
-  },
-  {
-    id: "finance",
-    title: "Finance",
-    description: "Master your money",
-    icon: Coins,
-    href: "/collections/finance",
-  },
-  {
     id: "self-help",
-    title: "Self Help",
+    title: "Self-Help",
     description: "Growth & productivity",
     icon: Sprout,
     href: "/collections/self-help",
-  },
-  {
-    id: "psychology",
-    title: "Psychology",
-    description: "The human mind",
-    icon: Lightbulb,
-    href: "/collections/psychology",
   },
   {
     id: "business",
@@ -39,6 +19,27 @@ const CATEGORIES = [
     description: "Strategy & leadership",
     icon: Briefcase,
     href: "/collections/business",
+  },
+  {
+    id: "mental-health",
+    title: "Mental Health",
+    description: "Wellness & mindfulness",
+    icon: Brain,
+    href: "/collections/mental-health",
+  },
+  {
+    id: "kids",
+    title: "Kids Books",
+    description: "Stories for young minds",
+    icon: Baby, // or 'Sparkles' if you prefer a generic fun icon
+    href: "/collections/kids",
+  },
+  {
+    id: "christianity",
+    title: "Christianity",
+    description: "Faith & Spirituality",
+    icon: Church, // Represents the category well
+    href: "/collections/christianity",
   },
 ];
 
@@ -48,9 +49,6 @@ export function CategoryGrid() {
       <div className="container">
         
         {/* Header */}
-        {/* FIX: Increased 'mb-2' to 'mb-10'. 
-            This lifts the header away from the cards, preventing the hover overlap. 
-        */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 px-4 md:px-0">
           <div>
             <h2 className="text-3xl md:text-5xl font-heading font-black text-brand-black tracking-tighter leading-tight">
