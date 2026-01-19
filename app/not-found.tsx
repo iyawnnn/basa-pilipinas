@@ -2,64 +2,52 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Home } from "lucide-react";
+import { BookX } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="relative min-h-[85vh] w-full flex flex-col items-center justify-center bg-white overflow-hidden">
+    <div className="relative min-h-[80vh] w-full flex flex-col items-center justify-center bg-white px-6 pb-20 overflow-hidden">
       
-      {/* --- GRAPHING PAPER BACKGROUND --- */}
-      {/* Creates a 20px x 20px light blue grid pattern */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40"
-           style={{
-             backgroundImage: `linear-gradient(#053a9310 1px, transparent 1px), linear-gradient(90deg, #053a9310 1px, transparent 1px)`,
-             backgroundSize: '24px 24px'
-           }}
-      />
-      
-      {/* --- CONTENT --- */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4">
+      {/* 1. Modern Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-brand-blue/5 rounded-full blur-[100px] pointer-events-none -z-10" />
+
+      {/* 2. Main Content */}
+      <div className="flex flex-col items-center text-center max-w-xl mx-auto z-10">
         
-        {/* The "Stamp" Effect */}
-        <div className="border-4 border-brand-black p-8 rounded-lg bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-8 max-w-lg w-full">
-            <h1 className="font-heading font-black text-8xl md:text-9xl text-brand-black leading-none mb-2">
-              4<span className="text-brand-red">0</span>4
-            </h1>
-            <div className="h-1 w-full bg-brand-black mb-4"></div>
-            <h2 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-brand-blue">
-              Page Not Found
-            </h2>
+        {/* Icon Container */}
+        <div className="mb-8 p-5 bg-white rounded-3xl border border-gray-100 shadow-xl shadow-gray-200/50">
+           <BookX className="w-10 h-10 md:w-12 md:h-12 text-brand-blue" strokeWidth={1.5} />
         </div>
 
-        {/* Minimal Message */}
-        <p className="text-gray-500 font-medium text-lg max-w-md mb-10">
-          The page you are looking for isn't in our syllabus. It might have been moved or deleted.
+        {/* Typography */}
+        <h1 className="font-heading font-black text-7xl md:text-9xl text-brand-black tracking-tighter leading-none mb-2">
+          4<span className="text-red-600">0</span>4
+        </h1>
+        
+        <h2 className="text-2xl md:text-3xl font-bold text-brand-black mb-4 tracking-tight">
+          This chapter is missing.
+        </h2>
+
+        <p className="text-gray-500 text-lg font-medium mb-10 leading-relaxed">
+          We looked through every shelf, but the page you are looking for has been moved, deleted, or never existed.
         </p>
 
-        {/* Buttons */}
-        <div className="flex gap-4">
-          <Button 
-            asChild 
-            size="lg" 
-            className="bg-brand-black text-white hover:bg-brand-blue rounded-none border-2 border-transparent hover:border-brand-blue transition-all font-bold h-12 px-8 shadow-lg"
-          >
-            <Link href="/">
-              <Home className="mr-2 h-4 w-4" /> Go Home
-            </Link>
-          </Button>
+        {/* Action Button (Single) */}
+        <Button 
+          asChild 
+          size="lg" 
+          className="rounded-full bg-brand-black text-white hover:bg-brand-blue transition-all font-bold h-12 px-10 shadow-lg hover:shadow-xl hover:-translate-y-1"
+        >
+          <Link href="/">
+            Return Home
+          </Link>
+        </Button>
 
-          <Button 
-            asChild 
-            variant="outline" 
-            size="lg" 
-            className="bg-white text-brand-black border-2 border-brand-black hover:bg-gray-50 rounded-none font-bold h-12 px-8"
-          >
-            <Link href="/products">
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Books
-            </Link>
-          </Button>
-        </div>
-
+      </div>
+      
+      {/* 3. Footer Tech Label */}
+      <div className="absolute bottom-8 text-[10px] font-bold text-gray-300 uppercase tracking-[0.2em] select-none">
+        Basa Pilipinas • Error 404
       </div>
     </div>
   );
