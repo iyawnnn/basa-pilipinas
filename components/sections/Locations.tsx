@@ -1,12 +1,10 @@
 "use client";
 
 import { MapPin, Clock, Navigation, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 export function Locations() {
   return (
-    <section className="w-full py-20 bg-white border-b border-gray-100">
+    <section id="locations" className="w-full py-20 bg-white border-b border-gray-100 scroll-mt-24">
       {/* FIXED: Removed 'px-4 md:px-6' to match other pages' padding consistency */}
       <div className="container mx-auto">
         {/* Layout: Text First (Mobile) -> Map Second (Mobile) */}

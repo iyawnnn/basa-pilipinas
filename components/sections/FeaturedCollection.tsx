@@ -29,7 +29,6 @@ const FEATURED_BOOKS = [
     title: "The Alchemist",
     author: "Paulo Coelho",
     discountedPrice: 249,
-    // File: public/images/books/the-alchemist.jpg
     coverImage: "/images/books/the-alchemist.webp",
     tags: ["Classic"],
   },
@@ -38,7 +37,6 @@ const FEATURED_BOOKS = [
     title: "Psychology of Money",
     author: "Morgan Housel",
     discountedPrice: 379,
-    // File: public/images/books/psychology-of-money.jpg
     coverImage: "/images/books/psychology-of-money.webp",
     tags: ["Finance"],
   },
@@ -51,6 +49,7 @@ export function FeaturedCollection() {
       className="w-full py-20 bg-white border-b border-gray-100 overflow-hidden"
     >
       <div className="container">
+        
         {/* Header: Balanced Layout */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-12 px-4 md:px-0">
           <div className="max-w-xl">
@@ -62,12 +61,21 @@ export function FeaturedCollection() {
             </p>
           </div>
 
-          {/* Desktop Link */}
-          <Link
-            href="/products"
-            className="hidden md:flex items-center text-sm font-bold text-brand-black hover:text-brand-red transition-colors"
+          {/* Desktop Link: Updated with Premium Red Hover Effect */}
+          <Link 
+            href="/products" 
+            className="hidden md:flex items-center gap-3 text-sm font-bold text-brand-black transition-colors group"
           >
-            View All Books <ArrowRight className="ml-2 h-4 w-4" />
+            <span className="relative pb-1">
+                View All Books
+                {/* Smooth Red Underline Animation */}
+                <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-brand-red transition-all duration-300 ease-out group-hover:w-full" />
+            </span>
+            
+            {/* Arrow Button: Fills Red on Hover */}
+            <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition-all duration-300 group-hover:bg-brand-red group-hover:text-white">
+                <ArrowRight className="h-4 w-4" />
+            </div>
           </Link>
         </div>
 

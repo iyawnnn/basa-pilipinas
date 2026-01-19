@@ -1,47 +1,53 @@
-import { Award, Truck, ShoppingBag, PackageCheck } from "lucide-react";
+"use client";
+
+import { Truck, RotateCcw, Store, Heart } from "lucide-react"; 
 
 const TRUST_ITEMS = [
-  { 
-    icon: Award, // Changed to Award Ribbon for "Premium"
-    title: "Premium Quality", 
-    desc: "Crisp print & quality paper" 
+  {
+    icon: Store, 
+    title: "Visit in Pampanga",
+    description: "Located at WalterMart",
   },
-  { 
-    icon: Truck, 
-    title: "Nationwide Shipping", 
-    desc: "Cash on Delivery available" 
+  {
+    // REPLACED Sparkles with Heart
+    // "Heart" = Curated with care / Books with soul.
+    icon: Heart, 
+    title: "Handpicked Titles",
+    description: "Curated with care",
   },
-  { 
-    icon: ShoppingBag, 
-    title: "Shop with Confidence", 
-    desc: "Checkout via Shopee & TikTok" 
+  {
+    icon: Truck,
+    title: "Nationwide Shipping",
+    description: "Deliver to your door",
   },
-  { 
-    icon: PackageCheck, 
-    title: "Secure Packaging", 
-    desc: "Thick bubble wrap protection" 
+  {
+    icon: RotateCcw,
+    title: "Budget Friendly",
+    description: "Reading for everyone",
   },
 ];
 
 export function TrustBar() {
   return (
-    // Restored bg-gray-50 (Light Gray) instead of plain white
-    <section className="w-full bg-gray-50 border-b border-gray-100 py-8 md:py-10">
+    <section className="w-full bg-gray-50 border-b border-gray-100 py-10 md:py-12">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-8 md:gap-8">
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-8">
           {TRUST_ITEMS.map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center gap-3">
-              {/* Icon Circle - kept white background to pop against the gray section */}
-              <div className="p-3 bg-white rounded-full text-brand-blue shadow-sm border border-gray-100">
+            <div key={idx} className="flex flex-col items-center text-center gap-4 group cursor-default">
+              
+              {/* Icon Circle */}
+              <div className="p-4 bg-white rounded-2xl text-brand-blue shadow-sm border border-gray-100 transition-transform duration-300 group-hover:scale-110 group-hover:shadow-md group-hover:text-brand-red">
                 <item.icon className="h-6 w-6" />
               </div>
               
-              <div className="space-y-1">
-                <h3 className="font-bold text-sm md:text-base text-brand-black leading-tight">
+              <div className="space-y-1.5">
+                <h3 className="font-heading font-bold text-base text-brand-black leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-xs text-gray-500 leading-tight px-2">
-                  {item.desc}
+                {/* Description */}
+                <p className="text-sm text-gray-500 font-medium leading-tight">
+                  {item.description}
                 </p>
               </div>
             </div>

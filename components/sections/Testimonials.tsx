@@ -30,28 +30,26 @@ export function Testimonials() {
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 px-4">
-          <div className="inline-flex items-center justify-center p-3 bg-white rounded-full mb-4 shadow-sm text-brand-blue">
-            <ThumbsUp className="h-6 w-6" />
+          
+          {/* FIX: Changed from Circle to "Pill Badge" to match Story/Category sections */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-brand-blue font-bold text-xs uppercase tracking-widest mb-6 border border-blue-100">
+             <ThumbsUp className="w-3 h-3" />
+             <span>Community Feedback</span>
           </div>
+
           <h2 className="text-3xl md:text-5xl font-heading font-black text-brand-black tracking-tighter mb-4">
             Trusted by Readers.
           </h2>
-          <p className="text-gray-500 font-medium">
+          <p className="text-gray-500 font-medium text-lg">
             Join thousands of Filipinos elevating their minds with Basa Pilipinas.
           </p>
         </div>
         
-        {/* Reviews Grid
-            FIXES:
-            1. Removed 'px-4' from this div. Now aligns flush with the container.
-            2. Mobile: Vertical Stack (grid-cols-1).
-            3. Desktop: 3-Column Grid (grid-cols-3).
-        */}
+        {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {REVIEWS.map((review) => (
             <div 
               key={review.id} 
-              // Internal Padding: Reduced to 'p-6' on mobile for more space, 'p-8' on desktop
               className="relative group flex flex-col justify-between p-6 md:p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               {/* Decorative Quote Icon */}
@@ -61,14 +59,12 @@ export function Testimonials() {
 
               {/* Review Content */}
               <div className="relative z-10 space-y-6">
-                {/* Star Rating */}
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 text-brand-gold fill-brand-gold" />
                   ))}
                 </div>
 
-                {/* The Quote */}
                 <p className="text-brand-black leading-relaxed font-medium text-lg">
                   "{review.text}"
                 </p>
