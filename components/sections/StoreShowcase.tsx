@@ -37,7 +37,7 @@ export function StoreShowcase() {
           {/* Added max-w-[400px] to prevent giant images on tablets in portrait mode */}
           <div className="group relative w-full max-w-[400px] md:max-w-none mx-auto aspect-[2/3] rounded-3xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl">
             <Image
-              src="/images/shop/store-1.svg" 
+              src="/images/shop/store-1.webp" 
               alt="Basa Pilipinas Bookshelves"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -52,7 +52,7 @@ export function StoreShowcase() {
           {/* Note: Kept the md:translate-y-12 for that nice staggered look on desktop, but it resets on mobile */}
           <div className="group relative w-full max-w-[400px] md:max-w-none mx-auto aspect-[2/3] rounded-3xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl md:translate-y-12">
             <Image
-              src="/images/shop/store-2.svg" 
+              src="/images/shop/store-2.webp" 
               alt="Inside Basa Pilipinas Store"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -66,7 +66,7 @@ export function StoreShowcase() {
           {/* Card 3: EXCLUSIVE MERCH */}
           <div className="group relative w-full max-w-[400px] md:max-w-none mx-auto aspect-[2/3] rounded-3xl overflow-hidden shadow-xl transition-all duration-500 hover:shadow-2xl">
             <Image
-              src="/images/shop/store-3.svg" 
+              src="/images/shop/store-3.webp" 
               alt="Basa Pilipinas Tote Bag"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
