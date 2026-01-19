@@ -115,7 +115,7 @@ export function Header() {
           <div className="flex-1 basis-0 flex justify-start">
             <Link href="/" className="flex items-center gap-2 z-50 group shrink-0">
               <Image 
-                src="/images/logo/logo.svg" 
+                src="/images/logo/logo.webp" 
                 alt="Basa Pilipinas" 
                 width={120} 
                 height={120} 
